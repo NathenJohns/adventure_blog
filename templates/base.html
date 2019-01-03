@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Adventure Blog</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper custom-navbar">
+            <a href="/home" class="brand-logo">Adventure Blog</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#!">Countries List</a></li>
+                    <li><a href="#!">Write Article</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/articles">Articles</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Explore Content<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#!">Countries List</a></li>
+                    <li><a href="#!">Write Article</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+        {% block content %}
+        {% endblock %}
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.collapsible').collapsible();
+            $(".button-collapse").sideNav();
+            $(".dropdown-button").dropdown();
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+            $('.carousel').carousel();
+                setInterval(function() {
+                    $('.carousel').carousel('next');
+                }, 10000);
+        });
+    </script>
+</body>
+</html>
