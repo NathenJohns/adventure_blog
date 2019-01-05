@@ -1,7 +1,7 @@
 /* NAVBAR STYLES */
 
 .custom-navbar {
-    background-color: #223d5f;
+    background-color: #47494b;
 }
 
 nav ul a {
@@ -13,6 +13,7 @@ nav .brand-logo {
     margin-left: 15px;
     font-family: 'Roboto', sans-serif;
     color: #fff;
+    font-size: 20px;
 }
 
 .dropdown-content li>a, .dropdown-content li>span {
@@ -45,7 +46,7 @@ a:focus, a:hover {
 }
 
 .bg-img-one {
-    background-image: url("../images/image1.jpg");
+    background-image: url("https://bit.ly/2VropjW");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -59,7 +60,7 @@ a:focus, a:hover {
 }
 
 .bg-img-two {
-    background-image: url("../images/image2.jpg");
+    background-image: url("https://bit.ly/2GVKKDf");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -70,10 +71,13 @@ a:focus, a:hover {
     margin-top: 0;
     width: 100%;
     height: 100%;
-} 
+}
 
+/* BUTTON STYLES */
+
+/* Home Page Button */
 .bg-img-three {
-    background-image: url("../images/image3.jpg");
+    background-image: url("https://bit.ly/2F8Ie9V");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -84,4 +88,55 @@ a:focus, a:hover {
     margin-top: 0;
     width: 100%;
     height: 100%;
-} 
+}
+
+.btn {
+    background-color: #f1f2f3;
+    color: #223d5f;
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: #223d5f;
+    color: #f1f2f3;
+}
+
+/* Add Countries Button */
+.btn-countries {
+    background-color: #223d5f;
+    color: #f1f2f3;
+}
+
+.btn-countries:hover, .btn-large:hover {
+    background-color: #223d5fc2;
+    color: #f1f2f3;
+}
+
+/* Delete Buttons */
+.btn-delete {
+    background-color: #cb1010;
+    color: #f1f2f3;
+}
+
+.btn-delete:hover {
+    background-color: #cb1010ba;
+}
+
+/* Edit Buttons */
+
+.btn-edit {
+    background-color: #2167ac;
+    color: #f1f2f3;
+}
+
+.btn-edit:hover {
+    background-color: #2167acc9;
+}
+
+/* MEDIA QUERIES */
+
+/* Render Logo Header on Nav on smaller screens */
+@media (max-width: 768px) {
+    nav .brand-logo {
+        font-size: 15px;
+    }
+}
