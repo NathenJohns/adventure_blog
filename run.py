@@ -45,8 +45,7 @@ def insert_article():
 
 @app.route('/add_country')
 def add_country():
-    return render_template("add_country.html",
-    countries=mongo.db.countries.find())
+    return render_template("add_country.html", locations=mongo.db.locations.find(), risks=mongo.db.risks.find())
 
 @app.route('/insert_country', methods=['POST'])
 def insert_country():
@@ -59,7 +58,7 @@ def insert_country():
 @app.route('/edit_country/<country_id>')
 def edit_country(country_id):
     the_country = mongo.db.countries.find_one({"_id": ObjectId(country_id)})
-    return render_template('edit_country.html', country=the_country)
+    return render_template('edit_country.html', country=the_country, locations=mongo.db.locations.find(), risks=mongo.db.risks.find())
 
 @app.route('/update_country/<country_id>', methods=['POST'])
 def update_country(country_id):
@@ -71,20 +70,41 @@ def update_country(country_id):
             "country_currency": request.form.get('country_currency'),
             "country_risk": request.form.get('country_risk'),
             "country_language": request.form.get('country_language'),
+            "injections": request.form.get('injections'),
             "country_description": request.form.get('country_description'),
             "reasons_to_go": request.form.get('reasons_to_go')
         })
     return redirect(url_for('get_countries'))
 
 # DELETING ARTICLES AND COUNTRIES
-
+@app.route('/delete_article/<article_id>')
+def delete_article(article_id):
+    mongo.db.articles.remove({'_id': ObjectId(article_id)})
+    return redirect(url_for('get_articles'))
+    
 @app.route('/delete_country/<country_id>')
 def delete_country(country_id):
     mongo.db.countries.remove({'_id': ObjectId(country_id)})
     return redirect(url_for('get_countries'))
 
 # SINGLE ARTICLE
+@app.route('/article/<article_id>')
+def single_article(article_id):
+    article=mongo.db.articles.find_one({'_id': ObjectId(article_id)})
 
+    return render_template('single_article.html', article=article)
+
+# SINGLE COUNTRY
+@app.route('/country/<country_id>')
+def single_country(country_id):
+    country=mongo.db.countries.find_one({'_id': ObjectId(country_id)})
+
+    return render_template('single_country.html', country=country)
+    
+# SIGN UP
+@app.route('/sign_up')
+def sign_up():
+    return render_template('sign_up.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

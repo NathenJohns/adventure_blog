@@ -7,35 +7,35 @@
         <form action="{{ url_for('insert_article') }}" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">assignment</i>
-                    <input id="title" name="title" type="text" class="validate">
-                    <label for="icon_prefix">Article Title</label>
+                    <i class="material-icons prefix fas fa-book"></i>
+                    <input id="title" name="title" type="text" class="validate" required>
+                    <label>Article Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">assignment</i>
-                    <input id="author" name="author" type="text" class="validate">
-                    <label for="icon_prefix">Author</label>
+                    <i class="material-icons prefix fas fa-user"></i>
+                    <input id="author" name="author" type="text" class="validate" required>
+                    <label>Author</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">assignment</i>
-                    <input id="create_date" name="create_date" type="text" class="validate">
-                    <label for="icon_prefix">Date Posted</label>
+                    <i class="material-icons prefix fas fa-calendar-week"></i>
+                    <input type="text" id="create_date" name="create_date" pattern="\d{1,2}/\d{1,2}/\d{1,2,3,4}" class="validate" required>
+                    <label>Date Created (dd-mm-yyyy)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea type="textarea" name="body" id="body" class="materialize-textarea"></textarea>
-                    <label for="icon_telephone">Article Body</label>
+                    <i class="material-icons prefix fas fa-pen-alt"></i>
+                    <textarea type="textarea" name="body" id="body" class="materialize-textarea" required></textarea>
+                    <label>Article Body</label>
                 </div>
             </div>
             <div class="row">
-                <button class="waves-effect waves-light btn btn-countries" type="submit" name="action">Add Article
-                    <i class="material-icons right">playlist_add</i>
+                <button class="waves-effect waves-light btn btn-countries" type="submit">Add Article
+                    <i class="material-icons right"></i>
                 </button>
             </div>
         </form>

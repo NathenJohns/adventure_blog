@@ -73,6 +73,12 @@ a:focus, a:hover {
     height: 100%;
 }
 
+/* MULTI-PAGE STYLE */
+
+h1 {
+    text-align: center;
+}
+
 /* BUTTON STYLES */
 
 /* Home Page Button */
@@ -130,6 +136,46 @@ a:focus, a:hover {
 
 .btn-edit:hover {
     background-color: #2167acc9;
+}
+
+/* ARTICLES AND ARTICLE STYLES */
+
+/* Single Article Page */
+.list-group-item:last-child {
+    margin-top: 20px;
+}
+
+/* FORM STYLES */
+
+/* Add and Edit Country Form */
+
+.caret {
+    border-right: 0;
+    border-left: 0;
+}
+
+.input-field .prefix {
+    font-size: 1.75em;
+}
+
+/* SINGLE COUNTRY PAGE */
+
+.table>tbody>tr:nth-of-type(odd) {
+    background-color: #223d5f;
+    color: #f1f2f3;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    border-top: 1px solid #000000;
+    border: 1px solid #000000;
+}
+
+td, th {
+    border-radius: 0px;
+}
+
+.single-country-reasons-header {
+    margin-top: 40px;
 }
 
 /* MEDIA QUERIES */

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start d-flex w-100 justify-content-between">
+            <h1>{{country.country_name}}</h1>
+            <table class="table">
+                <tr>
+                    <th>Country Location</th>
+                    <th>Currency</th>
+                    <th>Language</th>
+                    <th>Risk</th>
+                    <th>Injections Required?</th>
+                </tr>
+                <tr>
+                    <td>{{ country.country_location }}</td>
+                    <td>{{ country.country_currency }}</td>
+                    <td>{{ country.country_language }}</td>
+                    <td>{{ country.country_risk }}</td>
+                    <td>{{ country.injections }}</td>
+                </tr>
+            </table>
+            <h4 class="single-country-reasons-header">Reasons to Go and Things to See</h4>
+            <p>{{ country.reasons_to_go | safe }}</p>
+            <a href="{{url_for('delete_country', country_id=country._id)}}"class="waves-effect waves-light btn btn-delete btn_small">Delete</a>
+            <a href="{{url_for('edit_country', country_id=country._id)}}" class="waves-effect waves-light btn btn-edit btn_small">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

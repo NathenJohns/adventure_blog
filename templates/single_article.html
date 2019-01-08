@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start d-flex w-100 justify-content-between">
+            <h1>{{article.title}}</h1>
+            <h5 class="mb-1">Written by {{ article.author }} on {{article.create_date}}</h5>
+            <p>{{ article.body | safe }}</p>
+            <a href="{{url_for('delete_article', article_id=article._id)}}"class="waves-effect waves-light btn btn-delete btn_small">Delete</a>
+            <a href="" class="waves-effect waves-light btn btn-edit btn_small">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
