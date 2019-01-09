@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix fas fa-clipboard-list"></i>
-                    <input id="country_name" name="country_name" type="text" class="validate" value="{{country.country_name}}" required>
+                    <input id="country_name" name="country_name" type="text" class="validate" value="{{country.country_name}}" maxlength="17" required>
                     <label>Country Name</label>
                 </div>
             </div>
@@ -53,13 +53,6 @@
                     <i class="material-icons prefix fas fa-syringe"></i>
                     <input id="injections" name="injections" type="text" class="validate" value="{{country.injections}}" required>
                     <label>Injections Required?</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix fas fa-bars"></i>
-                    <textarea type="textarea" name="country_description" id="country_description" class="materialize-textarea" value="{{country.country_description}}" required>{{country.country_description}}</textarea>
-                    <label>Give a Brief Description</label>
                 </div>
             </div>
             <div class="row">

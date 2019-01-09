@@ -71,7 +71,6 @@ def update_country(country_id):
             "country_risk": request.form.get('country_risk'),
             "country_language": request.form.get('country_language'),
             "injections": request.form.get('injections'),
-            "country_description": request.form.get('country_description'),
             "reasons_to_go": request.form.get('reasons_to_go')
         })
     return redirect(url_for('get_countries'))
