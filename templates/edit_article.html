@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3>Edit Article</h3>
+    <div class="row">
+        <form action="{{ url_for('update_article', article_id=article._id) }}" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix fas fa-book"></i>
+                    <input id="title" name="title" type="text" class="validate" value="{{article.title}}" required>
+                    <label>Article Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix fas fa-user"></i>
+                    <input id="author" name="author" type="text" class="validate" value="{{article.author}}" required>
+                    <label>Author</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix fas fa-calendar-week"></i>
+                    <input type="text" id="create_date" name="create_date" pattern="\d{1,2}/\d{1,2}/\d{1,2,3,4}" class="validate" value="{{article.create_date}}" required>
+                    <label>Date Created (dd-mm-yyyy)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix fas fa-pen-alt"></i>
+                    <textarea type="textarea" name="body" id="body" class="materialize-textarea" value="{{article.body | safe}}" required>{{article.body | safe}}</textarea>
+                    <label>Article Body</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="waves-effect waves-light btn btn-countries" type="submit">Update Article
+                    <i class="material-icons right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -76,6 +76,23 @@ def update_country(country_id):
         })
     return redirect(url_for('get_countries'))
 
+@app.route('/edit_article/<article_id>')
+def edit_article(article_id):
+    the_article = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
+    return render_template('edit_article.html', article=the_article)
+
+@app.route('/update_article/<article_id>', methods=['POST'])
+def update_article(article_id):
+    mongo.db.articles.update(
+        {'_id': ObjectId(article_id)},
+        {
+            "title": request.form.get('title'),
+            "author": request.form.get('author'),
+            "create_date": request.form.get('create_date'),
+            "body": request.form.get('body'),
+        })
+    return redirect(url_for('get_articles'))
+
 # DELETING ARTICLES AND COUNTRIES
 @app.route('/delete_article/<article_id>')
 def delete_article(article_id):
