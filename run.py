@@ -29,8 +29,12 @@ def get_articles():
 @app.route('/countries')
 def get_countries():
     return render_template("countries.html", countries=mongo.db.countries.find())
+
+@app.route('/adventures')
+def get_adventures():
+    return render_template("adventures.html", adventures=mongo.db.adventures.find())
     
-# ADDING ARTICLES AND COUNTRIES
+# ADDING ARTICLES, COUNTRIES AND ADVENTURES
 
 @app.route('/write_article')
 def write_article():
@@ -53,7 +57,17 @@ def insert_country():
     countries.insert_one(request.form.to_dict())
     return redirect(url_for('get_countries'))
 
-# EDITING ARTICLES AND COUNTRIES
+@app.route('/create_adventure')
+def create_adventure():
+    return render_template("create_adventure.html", adventures=mongo.db.adventures.find())
+
+@app.route('/insert_adventure', methods=['POST'])
+def insert_adventure():
+    adventures = mongo.db.adventures
+    adventures.insert_one(request.form.to_dict())
+    return redirect(url_for('get_adventures'))
+
+# EDITING ARTICLES, COUNTRIES AND ADVENTURES
 
 @app.route('/edit_country/<country_id>')
 def edit_country(country_id):
@@ -91,8 +105,26 @@ def update_article(article_id):
             "body": request.form.get('body'),
         })
     return redirect(url_for('get_articles'))
+    
+@app.route('/edit_adventure/<adventure_id>')
+def edit_adventure(adventure_id):
+    the_adventure = mongo.db.adventures.find_one({"_id": ObjectId(adventure_id)})
+    return render_template('edit_adventure.html', adventure=the_adventure)
 
-# DELETING ARTICLES AND COUNTRIES
+@app.route('/update_adventure/<adventure_id>', methods=['POST'])
+def update_adventure(adventure_id):
+    mongo.db.adventures.update(
+        {'_id': ObjectId(adventure_id)},
+        {
+            "adventure_name": request.form.get('adventure_name'),
+            "countries": request.form.get('countries'),
+            "duration": request.form.get('duration'),
+            "start_date": request.form.get('start_date'),
+            "budget": request.form.get('budget'),
+        })
+    return redirect(url_for('get_adventures'))
+
+# DELETING ARTICLES, COUNTRIES AND ADVENTURES
 @app.route('/delete_article/<article_id>')
 def delete_article(article_id):
     mongo.db.articles.remove({'_id': ObjectId(article_id)})
@@ -102,6 +134,11 @@ def delete_article(article_id):
 def delete_country(country_id):
     mongo.db.countries.remove({'_id': ObjectId(country_id)})
     return redirect(url_for('get_countries'))
+
+@app.route('/delete_adventure/<adventure_id>')
+def delete_adventure(adventure_id):
+    mongo.db.adventures.remove({'_id': ObjectId(adventure_id)})
+    return redirect(url_for('get_adventures'))
 
 # SINGLE ARTICLE
 @app.route('/article/<article_id>')
@@ -117,10 +154,22 @@ def single_country(country_id):
 
     return render_template('single_country.html', country=country)
     
+# SINGLE ADVENTURE
+@app.route('/adventure/<adventure_id>')
+def single_adventure(adventure_id):
+    adventure=mongo.db.adventures.find_one({'_id': ObjectId(adventure_id)})
+
+    return render_template('single_adventure.html', adventure=adventure)
+    
 # SIGN UP
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
+    
+# LOGIN
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

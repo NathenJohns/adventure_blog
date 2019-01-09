@@ -22,21 +22,27 @@
             <a href="{{url_for('home')}}" class="brand-logo">Adventure Blog</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="{{url_for('get_countries')}}">Countries List</a></li>
+                    <li><a href="{{url_for('add_country')}}">Add Country</a></li>
                     <li><a href="{{url_for('write_article')}}">Write Article</a></li>
+                    <li><a href="{{url_for('create_adventure')}}">Create Adventure</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('home')}}">Home</a></li>
                     <li><a href="{{url_for('about')}}">About</a></li>
                     <li><a href="{{url_for('get_articles')}}">Articles</a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Explore Content<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="{{url_for('get_countries')}}">Countries</a></li>
+                    <li><a href="{{url_for('get_adventures')}}">Adventures</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Contribute<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="{{url_for('home')}}">Home</a></li>
                     <li><a href="{{url_for('about')}}">About</a></li>
                     <li><a href="{{url_for('get_articles')}}">Articles</a></li>
-                    <li><a href="{{url_for('get_countries')}}">Countries List</a></li>
+                    <li><a href="{{url_for('get_countries')}}">Countries</a></li>
+                    <li><a href="{{url_for('get_adventures')}}">Adventures</a></li>
                     <li><a href="{{url_for('write_article')}}">Write Article</a></li>
+                    <li><a href="{{url_for('add_country')}}">Add Country</a></li>
+                    <li><a href="{{url_for('create_adventure')}}">Create Adventure</a></li>
                 </ul>
             </div>
         </nav>
@@ -59,6 +65,15 @@
                 }, 10000);
             $('select').material_select();
         });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
+        
     </script>
 </body>
 </html>

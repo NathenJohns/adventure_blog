@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Adventures</h1>
+    <div class="row">
+        {% for adventure in adventures %}
+        <div class="col-lg-12">
+            <a href="{{url_for('single_adventure', adventure_id=adventure._id)}}" class="btn btn-default adventure-button">{{ adventure.adventure_name }}<a/>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
