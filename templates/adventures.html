@@ -3,16 +3,28 @@
 {% block content %}
 <div class="container">
     <h1>Adventures</h1>
-    <div class="row">
+    <div class="list-group">
         {% for adventure in adventures %}
-        <div class="col-lg-12">
-            <a href="{{url_for('single_adventure', adventure_id=adventure._id)}}" class="btn btn-default adventure-button">{{ adventure.adventure_name }}<a/>
+        <div class="col-lg-12 list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h3>{{ adventure.adventure_name }}<h3/>
+                <small>{{ adventure.countries }}</small>
+            </div>
+            <div>
+                <p><b>Duration (Days) : </b>{{ adventure.duration }},</p>
+                <p><b>Start Date: </b>{{ adventure.start_date }},</p>
+                <p><b>Budget: </b>{{ adventure.budget }}</p>
+            </div>
+            <div>
+                <a href="{{url_for('delete_adventure', adventure_id=adventure._id)}}"class="waves-effect waves-light btn btn-delete btn_small">Delete</a>
+                <a href="{{url_for('edit_adventure', adventure_id=adventure._id)}}" class="waves-effect waves-light btn btn-edit btn_small">Edit</a>
+            </div>
         </div>
         {% endfor %}
     </div>
     <div class="row">
         <a href="{{url_for('create_adventure')}}" class="waves-effect waves-light btn btn-adventures">
-            <i class="material-icons right">playlist_add</i>Create Adventure
+            <i class="material-icons right fas fa-plane-departure"></i>Create Adventure
         </a>
     </div>
 </div>

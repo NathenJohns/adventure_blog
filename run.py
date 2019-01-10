@@ -178,13 +178,6 @@ def single_country(country_id):
     country=mongo.db.countries.find_one({'_id': ObjectId(country_id)})
 
     return render_template('single_country.html', country=country)
-    
-# SINGLE ADVENTURE
-@app.route('/adventure/<adventure_id>')
-def single_adventure(adventure_id):
-    adventure=mongo.db.adventures.find_one({'_id': ObjectId(adventure_id)})
-
-    return render_template('single_adventure.html', adventure=adventure)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
