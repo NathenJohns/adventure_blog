@@ -5,16 +5,16 @@
         <h1>Sign In</h1>
         
         <div class="row">
-            <form class="col s12">
+            <form action="{{ url_for('about') }}" method="POST" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate" maxlength="30">
+                        <input id="email" type="email" class="validate" maxlength="30" required>
                         <label for="email" class="active">Email Address</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" class="validate" required>
                         <label for="password" class="active">Password</label>
                     </div>
                 </div>

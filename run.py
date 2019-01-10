@@ -1,13 +1,17 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+
+app.url_map.strict_slashes = False
 app.config["MONGO_DBNAME"] = 'adventure_blog'
 app.config["MONGO_URI"] = 'mongodb://Nathen:woodstock21@ds145194.mlab.com:45194/adventure_blog'
 
 mongo = PyMongo(app)
+
+
 
 # HOME NAVIGATION
 @app.route('/')
@@ -16,7 +20,7 @@ def home():
     return render_template("home.html")
 
 # ABOUT NAVIGATION
-@app.route('/about')
+@app.route('/about', methods =['POST', 'GET'])
 def about():
     return render_template("about.html")
 
@@ -30,16 +34,26 @@ def get_articles():
 def get_countries():
     return render_template("countries.html", countries=mongo.db.countries.find())
 
+# GET ADVENTURES NAVIGATION
 @app.route('/adventures')
 def get_adventures():
     return render_template("adventures.html", adventures=mongo.db.adventures.find())
+    
+# SIGN UP
+@app.route('/sign_up', methods=['POST', 'GET'])
+def sign_up():
+    return render_template('sign_up.html')
+    
+# LOGIN
+@app.route('/sign_in', methods=['POST', 'GET'])
+def sign_in():
+    return render_template('sign_in.html')
     
 # ADDING ARTICLES, COUNTRIES AND ADVENTURES
 
 @app.route('/write_article')
 def write_article():
-    return render_template("write_article.html",
-    articles=mongo.db.articles.find())
+    return render_template("write_article.html", articles=mongo.db.articles.find())
     
 @app.route('/insert_article', methods=['POST'])
 def insert_article():
@@ -59,12 +73,20 @@ def insert_country():
 
 @app.route('/create_adventure')
 def create_adventure():
-    return render_template("create_adventure.html", adventures=mongo.db.adventures.find())
+    return render_template("create_adventure.html", 
+    locations=list(mongo.db.locations.find()), 
+    countries=list(mongo.db.countries.find()))
 
 @app.route('/insert_adventure', methods=['POST'])
 def insert_adventure():
-    adventures = mongo.db.adventures
-    adventures.insert_one(request.form.to_dict())
+    new_adventure = {
+        "adventure_name": request.form.get('adventure_name'),
+        "duration": request.form.get('duration'),
+        "start_date": request.form.get('start_date'),
+        "budget": request.form.get('budget'),
+        "countries": request.form.getlist('countries')
+    }
+    inserted = mongo.db.adventures.insert_one(new_adventure)
     return redirect(url_for('get_adventures'))
 
 # EDITING ARTICLES, COUNTRIES AND ADVENTURES
@@ -109,7 +131,7 @@ def update_article(article_id):
 @app.route('/edit_adventure/<adventure_id>')
 def edit_adventure(adventure_id):
     the_adventure = mongo.db.adventures.find_one({"_id": ObjectId(adventure_id)})
-    return render_template('edit_adventure.html', adventure=the_adventure)
+    return render_template('edit_adventure.html', adventure=the_adventure, locations=list(mongo.db.locations.find()), countries=list(mongo.db.countries.find()))
 
 @app.route('/update_adventure/<adventure_id>', methods=['POST'])
 def update_adventure(adventure_id):
@@ -117,10 +139,10 @@ def update_adventure(adventure_id):
         {'_id': ObjectId(adventure_id)},
         {
             "adventure_name": request.form.get('adventure_name'),
-            "countries": request.form.get('countries'),
+            "countries": request.form.getlist('countries'),
             "duration": request.form.get('duration'),
             "start_date": request.form.get('start_date'),
-            "budget": request.form.get('budget'),
+            "budget": request.form.get('budget')
         })
     return redirect(url_for('get_adventures'))
 
@@ -145,7 +167,10 @@ def delete_adventure(adventure_id):
 def single_article(article_id):
     article=mongo.db.articles.find_one({'_id': ObjectId(article_id)})
 
-    return render_template('single_article.html', article=article)
+    return render_template('single_article.html',
+    article=article,
+    adventures=list(mongo.db.adventures.find()), 
+    countries=list(mongo.db.countries.find()))
 
 # SINGLE COUNTRY
 @app.route('/country/<country_id>')
@@ -160,16 +185,6 @@ def single_adventure(adventure_id):
     adventure=mongo.db.adventures.find_one({'_id': ObjectId(adventure_id)})
 
     return render_template('single_adventure.html', adventure=adventure)
-    
-# SIGN UP
-@app.route('/sign_up')
-def sign_up():
-    return render_template('sign_up.html')
-    
-# LOGIN
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

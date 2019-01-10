@@ -13,11 +13,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix fas fa-globe-europe"></i>
-                    <input id="countries" name="countries" type="text" class="validate">
-                    <label>Countries</label>
-                </div>
+                <label for="adventures"><p class="h5">Choose Countries to Visit</p></label>
+                <select multiple id="countries" name="countries" size="10" required />
+                    {% for location in locations %}
+                        <optgroup label="{{ location.country_location | title }}">
+                            {% for country in countries %}
+                                {% if location.country_location in country.country_location %}
+                                    <option value="{{country.country_name}}">{{country.country_name}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </optgroup>
+                    {% endfor %}
+                </select>
             </div>
             <div class="row">
                 <div class="input-field col s12">

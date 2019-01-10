@@ -5,7 +5,7 @@
         <h1>Sign Up</h1>
         
         <div class="row">
-            <form class="col s12">
+            <form action="{{ url_for('sign_in') }}" method="POST" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="username" type="text" class="validate" maxlength="15" minlength="3" required>
@@ -34,9 +34,6 @@
                     <button class="btn waves-effect waves-light btn-login-signup" type="submit" name="action">Sign Up</button>
                 </div>
                 <hr>
-                <div>
-                    <p>Already have an account? <a href="{{url_for('login')}}">Sign In</a></p>
-                </div>
             </form>
         </div>
     </div>
