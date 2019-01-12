@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flaskext.markdown import Markdown, Extension
 
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ app.url_map.strict_slashes = False
 app.config["MONGO_DBNAME"] = 'adventure_blog'
 app.config["MONGO_URI"] = 'mongodb://Nathen:woodstock21@ds145194.mlab.com:45194/adventure_blog'
 
+Markdown(app)
 mongo = PyMongo(app)
 
 # HOME NAVIGATION

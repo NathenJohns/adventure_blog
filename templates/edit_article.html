@@ -29,8 +29,12 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix fas fa-pen-alt"></i>
-                    <textarea type="textarea" name="body" id="body" class="materialize-textarea" value="{{article.body | safe}}" required>{{article.body | safe}}</textarea>
                     <label>Article Body</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="textarea" name="body" id="editor" class="materialize-textarea" value="{{ article.body }}">{{ article.body | markdown }}</textarea>
                 </div>
             </div>
             <div class="row">
