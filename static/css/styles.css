@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* NAVBAR STYLES */
 
 .custom-navbar {
@@ -101,7 +105,6 @@ a:focus, a:hover {
     height: 100%;
 }
 
-
 /* MULTI-PAGE STYLE */
 
 h1 {
@@ -145,13 +148,14 @@ h1 {
     color: #f1f2f3;
 }
 
-/* Add and Edit Adventures Button */
-.btn-adventures{
+/* Add and Edit Articles Button */
+.btn-articles{
+    margin-top: 20px;
     background-color: #223d5f;
     color: #f1f2f3;
 }
 
-.btn-adventures:hover, .btn-large:hover {
+.btn-articles:hover, .btn-large:hover {
     background-color: #223d5fc2;
     color: #f1f2f3;
 }
@@ -175,17 +179,6 @@ h1 {
 
 .btn-edit:hover {
     background-color: #2167acc9;
-}
-
-/* Sign In and Login Buttons */
-.btn-login-signup {
-    background-color: #223d5f;
-    color: #f1f2f3;
-}
-
-.btn-login-signup:hover {
-    background-color: #223d5fc2;
-    color: #f1f2f3;
 }
 
 /* ARTICLES AND ARTICLE STYLES */
@@ -239,6 +232,27 @@ h1 {
 
 .input-field .prefix {
     font-size: 1.75em;
+}
+
+/* Sign-Up and Sign-In Form */
+.sign-in-up-styles {
+    background-color: #000000b3;
+}
+
+.sign-up-in-paragraph {
+    color: #ffffff;
+}
+
+.row .col.s12 #sign-up {
+    color: #ffffff;;
+}
+
+.row .col.s12 #sign-in {
+    color: #ffffff;;
+}
+
+form p:last-child {
+    margin-bottom: 10px;
 }
 
 /* SINGLE COUNTRY PAGE */
