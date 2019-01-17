@@ -1,9 +1,16 @@
+/* GLOBAL */
+
 body {
     font-family: 'Roboto', sans-serif;
 }
 
-/* NAVBAR STYLES */
+/* MULTI-PAGE STYLE */
 
+h1 {
+    text-align: center;
+}
+
+/* NAVBAR STYLES */
 .custom-navbar {
     background-color: #47494b;
 }
@@ -105,12 +112,6 @@ a:focus, a:hover {
     height: 100%;
 }
 
-/* MULTI-PAGE STYLE */
-
-h1 {
-    text-align: center;
-}
-
 /* BUTTON STYLES */
 
 /* Home Page Button */
@@ -126,6 +127,7 @@ h1 {
 }
 
 /* Add and Edit Countries Button */
+
 .btn-countries {
     background-color: #223d5f;
     color: #f1f2f3;
@@ -137,6 +139,7 @@ h1 {
 }
 
 /* Add and Edit Adventures Button */
+
 .btn-adventures {
     margin-top: 20px;
     background-color: #223d5f;
@@ -149,6 +152,7 @@ h1 {
 }
 
 /* Add and Edit Articles Button */
+
 .btn-articles{
     margin-top: 20px;
     background-color: #223d5f;
@@ -161,6 +165,7 @@ h1 {
 }
 
 /* Delete Buttons */
+
 .btn-delete {
     background-color: #cb1010;
     color: #f1f2f3;
@@ -184,17 +189,6 @@ h1 {
 /* ARTICLES AND ARTICLE STYLES */
 
 /* Adventures Page */
-.articles-header {
-    color: #333333;
-    transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-}
-
-.articles-header:hover {
-    color: #223d5f;
-}
 
 .adventure-button {
     width:100%;
@@ -221,6 +215,20 @@ h1 {
     border-color: #223d5f;
 }
 
+/* Articles Page */
+
+.articles-header {
+    color: #333333;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.articles-header:hover {
+    color: #223d5f;
+}
+
 /* FORM STYLES */
 
 /* Add and Edit Country Form */
@@ -235,6 +243,7 @@ h1 {
 }
 
 /* Sign-Up and Sign-In Form */
+
 .sign-in-up-styles {
     background-color: #000000b3;
 }

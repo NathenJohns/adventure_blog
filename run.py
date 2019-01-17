@@ -1,13 +1,13 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session, jsonify
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flaskext.markdown import Markdown, Extension
+from datetime import datetime
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '3a436446bc213472'
-app.url_map.strict_slashes = False
 app.config["MONGO_DBNAME"] = 'adventure_blog'
 app.config["MONGO_URI"] = 'mongodb://Nathen:woodstock21@ds145194.mlab.com:45194/adventure_blog'
 
@@ -24,38 +24,49 @@ def home():
 @app.route('/articles', methods=['POST', 'GET'])
 def get_articles():
     title = "Articles"
-    return render_template("articles.html", articles=mongo.db.articles.find(), title=title)
+    return render_template("articles.html",
+    articles=mongo.db.articles.find(),
+    title=title)
 
 # GET COUNTRIES NAVIGATION
 @app.route('/countries')
 def get_countries():
     title = "Countries"
-    return render_template("countries.html", locations=list(mongo.db.locations.find()), countries=mongo.db.countries.find(), title=title)
+    return render_template("countries.html",
+    locations=list(mongo.db.locations.find()),
+    countries=mongo.db.countries.find(),
+    title=title)
 
 # GET ADVENTURES NAVIGATION
 @app.route('/adventures')
 def get_adventures():
     title = "Adventures"
-    return render_template("adventures.html", adventures=mongo.db.adventures.find(), title=title)
+    return render_template("adventures.html",
+    adventures=mongo.db.adventures.find(),
+    title=title)
     
 # SIGN UP
 @app.route('/sign_up', methods=['POST', 'GET'])
 def sign_up():
     title = "Sign Up"
-    return render_template('sign_up.html', title=title)
+    return render_template('sign_up.html',
+    title=title)
     
-# LOGIN
+# SIGN IN
 @app.route('/sign_in', methods=['POST', 'GET'])
 def sign_in():
     title = "Sign In"
-    return render_template('sign_in.html', title=title)
+    return render_template('sign_in.html',
+    title=title)
     
 # ADDING ARTICLES, COUNTRIES AND ADVENTURES
 
 @app.route('/write_article')
 def write_article():
     title = "Write Article"
-    return render_template("write_article.html", articles=mongo.db.articles.find(), title=title)
+    return render_template("write_article.html",
+    articles=mongo.db.articles.find(),
+    title=title)
     
 @app.route('/insert_article', methods=['POST'])
 def insert_article():
@@ -66,7 +77,10 @@ def insert_article():
 @app.route('/add_country')
 def add_country():
     title = "Add Country"
-    return render_template("add_country.html", locations=mongo.db.locations.find(), risks=mongo.db.risks.find(), title=title)
+    return render_template("add_country.html",
+    locations=mongo.db.locations.find(),
+    risks=mongo.db.risks.find(),
+    title=title)
 
 @app.route('/insert_country', methods=['POST'])
 def insert_country():
@@ -77,7 +91,10 @@ def insert_country():
 @app.route('/create_adventure')
 def create_adventure():
     title = "Create Adventure"
-    return render_template("create_adventure.html", locations=list(mongo.db.locations.find()), countries=list(mongo.db.countries.find()), title=title)
+    return render_template("create_adventure.html",
+    locations=list(mongo.db.locations.find()),
+    countries=list(mongo.db.countries.find()),
+    title=title)
 
 @app.route('/insert_adventure', methods=['POST'])
 def insert_adventure():
@@ -97,7 +114,11 @@ def insert_adventure():
 def edit_country(country_id):
     the_country = mongo.db.countries.find_one({"_id": ObjectId(country_id)})
     title = "Edit Country"
-    return render_template('edit_country.html', country=the_country, locations=mongo.db.locations.find(), risks=mongo.db.risks.find(), title=title)
+    return render_template('edit_country.html',
+    country=the_country,
+    locations=mongo.db.locations.find(),
+    risks=mongo.db.risks.find(),
+    title=title)
 
 @app.route('/update_country/<country_id>', methods=['POST'])
 def update_country(country_id):
@@ -118,7 +139,9 @@ def update_country(country_id):
 def edit_article(article_id):
     the_article = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     title = "Edit Article"
-    return render_template('edit_article.html', article=the_article, title=title)
+    return render_template('edit_article.html',
+    article=the_article,
+    title=title)
 
 @app.route('/update_article/<article_id>', methods=['POST'])
 def update_article(article_id):
@@ -136,7 +159,11 @@ def update_article(article_id):
 def edit_adventure(adventure_id):
     the_adventure = mongo.db.adventures.find_one({"_id": ObjectId(adventure_id)})
     title = "Edit Adventure"
-    return render_template('edit_adventure.html', adventure=the_adventure, locations=list(mongo.db.locations.find()), countries=list(mongo.db.countries.find()), title=title)
+    return render_template('edit_adventure.html',
+    adventure=the_adventure,
+    locations=list(mongo.db.locations.find()),
+    countries=list(mongo.db.countries.find()),
+    title=title)
 
 @app.route('/update_adventure/<adventure_id>', methods=['POST'])
 def update_adventure(adventure_id):
@@ -167,7 +194,7 @@ def delete_adventure(adventure_id):
     mongo.db.adventures.remove({'_id': ObjectId(adventure_id)})
     return redirect(url_for('get_adventures'))
 
-# SINGLE ARTICLE
+# SINGLE ARTICLE PAGE
 @app.route('/article/<article_id>')
 def single_article(article_id):
     article=mongo.db.articles.find_one({'_id': ObjectId(article_id)})
@@ -176,15 +203,18 @@ def single_article(article_id):
     return render_template('single_article.html',
     article=article,
     adventures=list(mongo.db.adventures.find()), 
-    countries=list(mongo.db.countries.find()), title=title)
+    countries=list(mongo.db.countries.find()),
+    title=title)
 
-# SINGLE COUNTRY
+# SINGLE COUNTRY PAGE
 @app.route('/country/<country_id>')
 def single_country(country_id):
     country=mongo.db.countries.find_one({'_id': ObjectId(country_id)})
     title = "Country"
 
-    return render_template('single_country.html', country=country, title=title)
+    return render_template('single_country.html',
+    country=country,
+    title=title)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
