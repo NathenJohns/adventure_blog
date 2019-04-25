@@ -16,7 +16,7 @@
                     <select id="country_location" name="country_location" type="text" class="validate" required>
                         <option value="" disabled selected>Country Location</option>
                         {% for location in locations %}
-                            <option value="{{location.country_location}}">{{location.country_location}}</option>
+                            <option value="{{location.country_location}}" required>{{location.country_location}}</option>
                         {% endfor %}
                     </select>
                     <label>Country Location</label>

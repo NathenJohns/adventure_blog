@@ -1,9 +1,10 @@
 import os
+import datetime
+
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flaskext.markdown import Markdown, Extension
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -71,7 +72,9 @@ def write_article():
 @app.route('/insert_article', methods=['POST'])
 def insert_article():
     articles = mongo.db.articles
-    articles.insert_one(request.form.to_dict())
+    data = request.form.to_dict()
+    data["create_date"] = datetime.datetime.utcnow().isoformat()
+    articles.insert_one(data)
     return redirect(url_for('get_articles'))
 
 @app.route('/add_country')
@@ -130,7 +133,6 @@ def update_country(country_id):
             "country_currency": request.form.get('country_currency'),
             "country_risk": request.form.get('country_risk'),
             "country_language": request.form.get('country_language'),
-            "injections": request.form.get('injections'),
             "reasons_to_go": request.form.get('reasons_to_go')
         })
     return redirect(url_for('get_countries'))
@@ -150,7 +152,7 @@ def update_article(article_id):
         {
             "title": request.form.get('title'),
             "author": request.form.get('author'),
-            "create_date": request.form.get('create_date'),
+            "create_date": request.form.get('time'),
             "body": request.form.get('body'),
         })
     return redirect(url_for('get_articles'))

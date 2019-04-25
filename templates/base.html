@@ -55,8 +55,8 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     <script type="text/javascript">
         CKEDITOR.replace('editor')
     </script>
@@ -74,16 +74,13 @@
         });
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
-            selectYears: 200, // Creates a dropdown of 200 years to control year,
+            selectYears: 200, // Creates a dropdown of 15 years to control year,
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
             closeOnSelect: false, // Close upon selecting a date,
-            format: 'dd-mm--yyyy'
-        });
-        $(".delete-button").click(function(){
-            return confirm("Are you sure you want to delete?");
-        });
+            container: undefined, // ex. 'body' will append picker to body
+          });
     </script>
 </body>
 </html>
