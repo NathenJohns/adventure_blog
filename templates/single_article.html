@@ -7,18 +7,8 @@
             <h1>{{article.title}}</h1>
             <h5 class="mb-1">Written by {{ article.author }} on {{article.create_date}}</h5>
             <p>{{ article.body | markdown }}</p>
-            <a id="myBtn" class="delete-button waves-effect waves-light btn btn-delete btn_small">Delete</a>
+            <a href="{{url_for('delete_article', article_id=article._id)}}" class="delete-button waves-effect waves-light btn btn-delete btn_small">Delete</a>
             <a href="{{url_for('edit_article', article_id=article._id)}}" class="waves-effect waves-light btn btn-edit btn_small">Edit</a>
-        
-            <!-- Modal -->
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Are you sure you want to delete?</p>
-                    <a href="{{url_for('delete_article', article_id=article._id)}}" class="delete-button waves-effect waves-light btn btn-delete btn_small">Yes</a>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>

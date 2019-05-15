@@ -74,7 +74,7 @@ def write_article():
 def insert_article():
     articles = mongo.db.articles
     data = request.form.to_dict()
-    data["create_date"] = datetime.utcnow().isoformat()
+    data["create_date"] = datetime.utcnow().strftime('%d %B %Y - %H:%M')
     articles.insert_one(data)
     return redirect(url_for('get_articles'))
 
@@ -102,10 +102,13 @@ def create_adventure():
 
 @app.route('/insert_adventure', methods=['POST'])
 def insert_adventure():
+    
+    start_date = datetime.strptime(request.form.get('start_date'), "%d %B, %Y")
+    
     new_adventure = {
         "adventure_name": request.form.get('adventure_name'),
         "duration": request.form.get('duration'),
-        "start_date": datetime.strptime(request.form.get('start_date'), "%d %B, %Y").isoformat(), 
+        "start_date": datetime.strftime(start_date, "%Y, %B %d"), 
         "budget": request.form.get('budget'),
         "countries": request.form.getlist('countries')
     }
@@ -153,7 +156,7 @@ def update_article(article_id):
         {
             "title": request.form.get('title'),
             "author": request.form.get('author'),
-            "create_date": datetime.utcnow().isoformat(),
+            "create_date": datetime.utcnow().strftime('%d %B %Y - %H:%M'),
             "body": request.form.get('body'),
         })
     return redirect(url_for('get_articles'))
@@ -170,13 +173,16 @@ def edit_adventure(adventure_id):
 
 @app.route('/update_adventure/<adventure_id>', methods=['POST'])
 def update_adventure(adventure_id):
+    
+    start_date = datetime.strptime(request.form.get('start_date'), "%d %B, %Y")
+    
     mongo.db.adventures.update(
         {'_id': ObjectId(adventure_id)},
         {
             "adventure_name": request.form.get('adventure_name'),
             "countries": request.form.getlist('countries'),
             "duration": request.form.get('duration'),
-            "start_date": datetime.strptime(request.form.get('start_date'), "%d %B, %Y").isoformat(),
+            "start_date": datetime.strftime(start_date, "%Y, %B %d"),
             "budget": request.form.get('budget')
         })
     return redirect(url_for('get_adventures'))
