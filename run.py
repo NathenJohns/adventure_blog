@@ -1,5 +1,6 @@
 import os
-import datetime
+import pymongo
+from datetime import datetime
 
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
@@ -26,7 +27,7 @@ def index():
 def get_articles():
     title = "Articles"
     return render_template("articles.html",
-    articles=mongo.db.articles.find(),
+    articles=mongo.db.articles.find().sort("create_date", pymongo.DESCENDING),
     title=title)
 
 # GET COUNTRIES NAVIGATION
@@ -43,7 +44,7 @@ def get_countries():
 def get_adventures():
     title = "Adventures"
     return render_template("adventures.html",
-    adventures=mongo.db.adventures.find(),
+    adventures=mongo.db.adventures.find().sort("start_date", pymongo.ASCENDING),
     title=title)
     
 # SIGN UP
@@ -73,7 +74,7 @@ def write_article():
 def insert_article():
     articles = mongo.db.articles
     data = request.form.to_dict()
-    data["create_date"] = datetime.datetime.utcnow().isoformat()
+    data["create_date"] = datetime.utcnow().isoformat()
     articles.insert_one(data)
     return redirect(url_for('get_articles'))
 
@@ -104,13 +105,13 @@ def insert_adventure():
     new_adventure = {
         "adventure_name": request.form.get('adventure_name'),
         "duration": request.form.get('duration'),
-        "start_date": request.form.get('start_date'),
+        "start_date": datetime.strptime(request.form.get('start_date'), "%d %B, %Y").isoformat(), 
         "budget": request.form.get('budget'),
         "countries": request.form.getlist('countries')
     }
     inserted = mongo.db.adventures.insert_one(new_adventure)
     return redirect(url_for('get_adventures'))
-
+    
 # EDITING ARTICLES, COUNTRIES AND ADVENTURES
 
 @app.route('/edit_country/<country_id>')
@@ -152,7 +153,7 @@ def update_article(article_id):
         {
             "title": request.form.get('title'),
             "author": request.form.get('author'),
-            "create_date": request.form.get('time'),
+            "create_date": datetime.utcnow().isoformat(),
             "body": request.form.get('body'),
         })
     return redirect(url_for('get_articles'))
@@ -175,7 +176,7 @@ def update_adventure(adventure_id):
             "adventure_name": request.form.get('adventure_name'),
             "countries": request.form.getlist('countries'),
             "duration": request.form.get('duration'),
-            "start_date": request.form.get('start_date'),
+            "start_date": datetime.strptime(request.form.get('start_date'), "%d %B, %Y").isoformat(),
             "budget": request.form.get('budget')
         })
     return redirect(url_for('get_adventures'))
