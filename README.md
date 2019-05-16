@@ -8,3 +8,5 @@ The backend code is found in the run.py file and to run this code make sure to b
 The datepicker when creating or updating an adventure does not work as effectively as it has done previously when clicking to open. This is solely a Chrome issue; the datepicker works perfectly on other browsers such as Firefox or Edge.
 
 If using Chrome, however, the user will have to right click the datepicker to open. 
+
+Link to site: https://adventure-blog.herokuapp.com/
