@@ -1,1 +1,1 @@
-web: gunicorn timer:app
+web: gunicorn timer:adventure_blog
