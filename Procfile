@@ -1,1 +1,1 @@
-web: gunicorn timer:adventure-blog
+web: python run.py
