@@ -53,7 +53,7 @@ a:focus, a:hover {
 
 .carousel-text {
     color: #fff;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .bg-img-one {
@@ -272,22 +272,22 @@ form p:last-child {
 
 /* SINGLE COUNTRY PAGE */
 
-.table>tbody>tr:nth-of-type(odd) {
-    background-color: #223d5f;
-    color: #f1f2f3;
-}
-
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    border-top: 1px solid #000000;
-    border: 1px solid #000000;
-}
-
-td, th {
-    border-radius: 0px;
-}
-
 .single-country-reasons-header {
     margin-top: 40px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.country-details .country-detail-header {
+    font-weight: 500;
+}
+
+.country-details p {
+    font-size: 20px;
+}
+
+hr {
+    border-top: 2px solid #223d5f;
 }
 
 /* MULTI COUNTRIES PAGE */
@@ -355,7 +355,7 @@ td, th {
 
 .modal-content {
   margin: 20% auto;
-  width: 40%;
+  width: 100%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   top: 10%;
   animation-name: modalopen;
