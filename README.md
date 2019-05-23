@@ -1,5 +1,4 @@
 # Adventure Blog
-
 Adventure Blog - Code Institute Project 4
 
 This milestone project, as part of the Code Institute curriculum, was created for the sole purpose of users building and editing Adventures centered around Travel and then writing articles about their exploits.
@@ -13,11 +12,9 @@ In it's current form the website does not have full functionality with login or 
 In future, myself or other developers can amend this so that only users who created or wrote articles/adventures can amend or delete them but still be viewed by everyone else. As mentioned above, this was not a requirement for the course.
 
 # Demo
-
 A live demo of this project can be found at https://adventure-blog.herokuapp.com/. This application is hosted on Heroku.
 
 # UX
-
 hjhjnjnj
 
 # Technologies
@@ -31,22 +28,28 @@ hjhjnjnj
 9. Ckeditor.js
 
 # Development Process
-
 ## Automated Testing
 
 ## Manual Testing
-In terms of testing I use the Google Dev tools and trial by error mainly.
+Testing for this project was kept within the Code Editor (Cloud9) and when deployed on Google Chrome using their dev tools.
+
+As the code is interactive and requires Javascript, dev tools on Google Chrome was used to work and test functionality and the Console (using Console Log) within the code was used
+to see if the progam ran into errors. There was regular use of trial and error.
+
+This site was tested across multiple browsers (Chrome, Safari, Internet Explorer, FireFox) and on multiple mobile devices (iPhone 4, 5, 7: Chrome and Safari, iPad, Samsung Galaxy) to ensure compatibility and responsiveness.
 
 
 # Features
 
 # Known Issues
-
 The datepicker when creating or updating an adventure does not work as effectively as it has done previously when clicking to open. This is solely a Chrome issue; the datepicker works perfectly on other browsers such as Firefox or Edge.
 
 If using Chrome, however, the user will have to right click the datepicker to open. 
 
 # Credits
+## Content
+
+## Media
 
 # Installation
 
