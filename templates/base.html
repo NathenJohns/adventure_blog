@@ -56,11 +56,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
-    <script type="text/javascript">
-        CKEDITOR.replace('editor')
-    </script>
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.collapsible').collapsible();
@@ -72,18 +68,26 @@
                     $('.carousel').carousel('next');
                 }, 10000);
             $('select').material_select();
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 50, // Creates a dropdown of 15 years to control year,
+                today: 'Today',
+                clear: 'Clear',
+                close: 'Ok',
+                closeOnSelect: false, // Close upon selecting a date,
+                container: undefined, // ex. 'body' will append picker to body
+                min: new Date(),
+                max: false  // `true` sets it to today. `false` removes any limits.
+              });
+            if (CKEDITOR) {
+                try {
+                    var editor = CKEDITOR.replace('editor');
+                } catch(err) {
+                    // Skip the exception but log the error in the console
+                    console.log(err);
+                }
+            }
         });
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 50, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false, // Close upon selecting a date,
-            container: undefined, // ex. 'body' will append picker to body
-            min: new Date(),
-            max: false  // `true` sets it to today. `false` removes any limits.
-          });
     </script>
 
 </body>
